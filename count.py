@@ -31,8 +31,10 @@ Now,God only knows.
 fileder1=open("a_count")
 fileder2=open("b_count")
 
-result_a=[[0,0]]*10
-result_b=[[0,0]]*10
+#不能用result_a=[[0,0]]*10,否则所有单个元素都会更新
+result_a=[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+result_b=[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+
 
 for line in fileder1:
     lines=line.strip().split('\t')#strip()用来去除换行符
