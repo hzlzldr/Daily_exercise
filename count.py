@@ -65,8 +65,3 @@ fileder2.close()
 print(result_a)
 print(result_b)
 
-result="result.txt"
-
-with open(result,'r+') as f:
-    f.write(str(result_a))
-    f.write(str(result_b))
