@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 __author__ = lanzili
-__mtime__ = '2018/4/24'
+__mtime__ = '2018/4/26'
 # code is far away from bugs with the god animal protecting
     I love animals. They taste delicious.
              ┏┓   ┏┓
@@ -22,37 +22,38 @@ when I wrote this,only God and I understood what I was doing.
 Now,God only knows.
 
 """
-
 """
-    毕设结果分析
-    根据effect size的正负，统计正负调控
+    统计哪些基因区域出现了不止一个位点
+
 """
 
 import sys
-from itertools import islice
-
-"""
-    islice(iterable, stop) --> islice object
-    islice(iterable, start, stop[, step]) --> islice object
-"""
 
 def func(filename):
-
-    #不能用result=[[0,0]]*10,否则所有单个元素都会更新
-    result=[0,0]
     fileder=open(filename)
-
-    for line in islice(fileder,1,None):
-        lines=line.strip().split('\t')#strip()用来去除换行符
-        if lines[4].startswith('-'):
-            result[1]+=1
+    count=0
+    result={}
+    line_num=0
+    for line in fileder:
+        line_num+=1
+        lines=line.split('\t')
+        if lines[0] in result:
+            result[lines[0]]+=1
         else:
-            result[0]+=1
+            result[lines[0]]=1
 
-    return result
+    print(line_num)
+    #print(result)
+    for key in result.keys():
+        if result[key]>1:
+            count+=1
+        else:
+            continue
+
+    fileder.close()
+    return count
 
 if __name__ == '__main__':
     filename=sys.argv[1]
-
     result=func(filename)
     print(result)
